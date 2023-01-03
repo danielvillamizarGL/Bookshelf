@@ -13,7 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        UILabel.appearance().font = UIFont(name: "Avenir", size: 17)!
+        let attributes:[NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont(name: "Avenir", size: 17)!
+        ]
+        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+//        UILabel.appearance(whenContainedInInstancesOf: [UITextField.self]).at
+        
         return true
     }
 
