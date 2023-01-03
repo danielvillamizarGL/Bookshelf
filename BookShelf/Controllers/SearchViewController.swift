@@ -11,7 +11,7 @@ class SearchViewController: UIViewController {
     
     private var books: BooksObject?
     
-    private var bookManager = BookManager()
+    private var bookManager = BookViewModel()
     
     private var query: String = ""
     
