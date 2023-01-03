@@ -127,7 +127,7 @@ class HomeViewController: UIViewController {
             switch changes {
             case .initial:
                 break
-            case .update(_, let deletions, let insertions, let modifications):
+            case .update(_, _, _, _):
                 
                 self.tableView.reloadData()
             case .error(let error):
@@ -174,15 +174,12 @@ class HomeViewController: UIViewController {
         mainView.addSubview(headerTitle)
         mainView.addSubview(tableView)
         
-        let headerView = HeaderView(frame: .zero)
-        headerView.configure(text: "Selected books")
-        
         tableView.dataSource = self
         tableView.delegate = self
-        
     }
     
     private func setupLayouts(){
+        
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -202,8 +199,7 @@ class HomeViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             bannerImage.topAnchor.constraint(equalTo: title1Label.bottomAnchor, constant: 24),
-            bannerImage.widthAnchor.constraint(equalTo: mainView.widthAnchor),
-            
+            bannerImage.widthAnchor.constraint(equalTo: mainView.widthAnchor),            
             bannerImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2)
         ])
         
@@ -221,15 +217,6 @@ class HomeViewController: UIViewController {
         
         constraint1 = noFavoriteLabel.topAnchor.constraint(equalTo: headerTitle.bottomAnchor, constant: 16)
         constraint2 = noFavoriteLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        
-        
-        
-    }
-    
-    
-    @objc private func goToSearchView(){
-        
-        present(SearchViewController(), animated: true, completion: nil)
     }
 }
 
@@ -237,8 +224,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Favorite count:: \(favoriteBooks?.count)")
-        
+               
         if let count = favoriteBooks?.count {
             if count > 0 {
                 noFavoriteLabel.removeFromSuperview()
